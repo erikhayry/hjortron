@@ -1,0 +1,89 @@
+/*
+  css3 used:
+  calc();
+  box-sizing (ie 8 >)
+  pseudo elements
+  
+*/
+
+
+.m-time-bar{
+  width: 100%;
+  height: 40px;
+  background-color: rgb(231, 231, 231);
+  position: relative;
+  border-right: 10px solid rgb(231, 231, 231);
+  cursor: pointer;
+  box-sizing: border-box;
+  
+}
+
+.m-time-bar-range-start,
+.m-time-bar-range-stop,
+.m-time-bar-range-bg,
+.m-time-bar-needle{
+  height: calc(50% - 1px);
+  width: 10px;
+  background-color: rgb(111, 111, 111);
+  position: absolute;
+  color: white;
+  cursor: pointer;
+}
+
+.m-time-bar-range-start{
+  z-index: 1;
+}
+
+.m-time-bar-range-stop{
+  background-color: rgb(111, 111, 111);
+  bottom: 0;
+  &:after {
+    content: '';
+    display: block;
+    background-color: rgb(209, 209, 209);
+    position: absolute;
+    top: calc(-100% - 3px);
+    height: calc(100% + 3px);
+    width: 10px;
+    }
+}
+
+.m-time-bar-range-bg{
+  background-color: rgb(209, 209, 209);
+  height: 100%;
+}
+
+.m-time-bar-needle{
+  background-color: #cc7070;
+  z-index: 2;
+  height: 30px;
+  top: 100%;
+}
+
+.m-time-bar-range-remove-btn{
+  position: absolute;
+  top: -22px;
+}
+
+.m-time-bar-range-add-pos-btn{
+  position: absolute;
+  top: -22px;
+  margin-left: 100px;
+}
+
+
+.m-time-bar-needle-add-btn {
+  position: absolute;
+  bottom: -55px;
+  display: none;
+}
+
+
+.is-addable-true{
+  .m-time-bar-needle-add-btn{
+    display: block;
+  }
+  .m-time-bar-needle{
+    background-color: rgb(123, 187, 123);
+  }
+}

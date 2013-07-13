@@ -1,0 +1,97 @@
+{
+    "project": {},
+    "files": {
+        "services/itemFactory.js": {
+            "name": "services/itemFactory.js",
+            "modules": {},
+            "classes": {
+                "itemFactory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "itemFactory": {
+            "name": "itemFactory",
+            "shortname": "itemFactory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "services/itemFactory.js",
+            "line": 2,
+            "description": "Service for items"
+        }
+    },
+    "classitems": [
+        {
+            "file": "services/itemFactory.js",
+            "line": 11,
+            "description": "Returns item",
+            "itemtype": "method",
+            "name": "itemFactory.getItem",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "of item",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "item of id",
+                "type": "Object"
+            },
+            "class": "itemFactory"
+        },
+        {
+            "file": "services/itemFactory.js",
+            "line": 22,
+            "description": "Get all items",
+            "itemtype": "method",
+            "name": "itemFactory.getItems",
+            "return": {
+                "description": "items",
+                "type": "Object"
+            },
+            "class": "itemFactory"
+        },
+        {
+            "file": "services/itemFactory.js",
+            "line": 32,
+            "description": "Adds one item to items",
+            "itemtype": "method",
+            "name": "itemFactory.addItem",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "items",
+                "type": "Object"
+            },
+            "class": "itemFactory"
+        },
+        {
+            "file": "services/itemFactory.js",
+            "line": 43,
+            "description": "Removes items from items",
+            "itemtype": "method",
+            "name": "itemFactory.addItem",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "of item",
+                    "type": "String"
+                }
+            ],
+            "class": "itemFactory"
+        }
+    ],
+    "warnings": []
+}

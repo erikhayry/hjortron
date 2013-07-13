@@ -1,0 +1,13 @@
+<div class="m-time-bar-needle-holder is-addable-{{needle.isAddable}}">
+	
+	<div 	ng-mousedown="onNeedleDrag($event)"  
+			class="m-time-bar-needle" 
+			style="left: {{needle.value}}%">	
+	</div>
+
+	<button class="m-time-bar-needle-add-btn" 
+			ng-click="addRange()" 
+			style="left: {{needle.value}}%">
+			Add Range
+	</button>
+</div>

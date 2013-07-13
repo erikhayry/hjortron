@@ -1,0 +1,126 @@
+/* line 1, ../sass/base/_base.scss */
+* {
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* line 8, ../sass/base/_base.scss */
+body {
+  padding: 15px;
+}
+
+/*
+  css3 used:
+  calc();
+  box-sizing (ie 8 >)
+  pseudo elements
+  
+*/
+/* line 10, ../sass/modules/_timebar.scss */
+.m-time-bar {
+  width: 100%;
+  height: 40px;
+  background-color: #e7e7e7;
+  position: relative;
+  border-right: 10px solid #e7e7e7;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* line 24, ../sass/modules/_timebar.scss */
+.m-time-bar-range-start,
+.m-time-bar-range-stop,
+.m-time-bar-range-bg,
+.m-time-bar-needle {
+  height: calc(50% - 1px);
+  width: 10px;
+  background-color: #6f6f6f;
+  position: absolute;
+  color: white;
+  cursor: pointer;
+}
+
+/* line 33, ../sass/modules/_timebar.scss */
+.m-time-bar-range-start {
+  z-index: 1;
+}
+
+/* line 37, ../sass/modules/_timebar.scss */
+.m-time-bar-range-stop {
+  background-color: #6f6f6f;
+  bottom: 0;
+}
+/* line 40, ../sass/modules/_timebar.scss */
+.m-time-bar-range-stop:after {
+  content: '';
+  display: block;
+  background-color: #d1d1d1;
+  position: absolute;
+  top: calc(-100% - 3px);
+  height: calc(100% + 3px);
+  width: 10px;
+}
+
+/* line 51, ../sass/modules/_timebar.scss */
+.m-time-bar-range-bg {
+  background-color: #d1d1d1;
+  height: 100%;
+}
+
+/* line 56, ../sass/modules/_timebar.scss */
+.m-time-bar-needle {
+  background-color: #cc7070;
+  z-index: 2;
+  height: 30px;
+  top: 100%;
+}
+
+/* line 63, ../sass/modules/_timebar.scss */
+.m-time-bar-range-remove-btn {
+  position: absolute;
+  top: -22px;
+}
+
+/* line 68, ../sass/modules/_timebar.scss */
+.m-time-bar-range-add-pos-btn {
+  position: absolute;
+  top: -22px;
+  margin-left: 100px;
+}
+
+/* line 75, ../sass/modules/_timebar.scss */
+.m-time-bar-needle-add-btn {
+  position: absolute;
+  bottom: -55px;
+  display: none;
+}
+
+/* line 83, ../sass/modules/_timebar.scss */
+.is-addable-true .m-time-bar-needle-add-btn {
+  display: block;
+}
+/* line 86, ../sass/modules/_timebar.scss */
+.is-addable-true .m-time-bar-needle {
+  background-color: #7bbb7b;
+}
+
+/* line 1, ../sass/modules/_video.scss */
+.m-video {
+  margin-bottom: 30px;
+}
+
+/* line 4, ../sass/modules/_video.scss */
+.m-video-el {
+  width: 400px;
+}
+
+/* line 7, ../sass/modules/_video.scss */
+.m-video-output {
+  margin: 10px 0;
+}
