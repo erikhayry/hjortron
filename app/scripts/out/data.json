@@ -9,6 +9,15 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "app.js": {
+            "name": "app.js",
+            "modules": {},
+            "classes": {
+                "svr2App": 1
+            },
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {},
@@ -24,6 +33,18 @@
             "file": "services/itemFactory.js",
             "line": 2,
             "description": "Service for items"
+        },
+        "svr2App": {
+            "name": "svr2App",
+            "shortname": "svr2App",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "app.js",
+            "line": 2,
+            "description": "The main app"
         }
     },
     "classitems": [
@@ -91,6 +112,51 @@
                 }
             ],
             "class": "itemFactory"
+        },
+        {
+            "file": "app.js",
+            "line": 10,
+            "description": "Sets upp the routing for the app",
+            "itemtype": "property",
+            "name": "$routeProvider",
+            "type": "angualr function",
+            "class": "svr2App"
+        },
+        {
+            "file": "app.js",
+            "line": 27,
+            "description": "Timebar directive",
+            "itemtype": "property",
+            "name": "timeBar",
+            "type": "directive",
+            "class": "svr2App"
+        },
+        {
+            "file": "app.js",
+            "line": 68,
+            "description": "Range directive",
+            "itemtype": "property",
+            "name": "range",
+            "type": "directive",
+            "class": "svr2App"
+        },
+        {
+            "file": "app.js",
+            "line": 82,
+            "description": "Needle directive",
+            "itemtype": "property",
+            "name": "needle",
+            "type": "directive",
+            "class": "svr2App"
+        },
+        {
+            "file": "app.js",
+            "line": 96,
+            "description": "videoHolder directive",
+            "itemtype": "property",
+            "name": "videoHolder",
+            "type": "directive",
+            "class": "svr2App"
         }
     ],
     "warnings": []

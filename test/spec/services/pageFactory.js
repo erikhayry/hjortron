@@ -26,22 +26,4 @@ describe('Service: pageFactory', function () {
 
     });
   });
-
-/*  describe('setElements()', function() {
-    it('gets an item', function () {
-      var item = {ranges: 'ranges', id: 1};
-      itemFactory.addItem(item)
-      expect(itemFactory.getItem(1)).toBe(item);
-    });
-  });
-
-  describe('getElement()', function() {
-    it('adds an item', function () {
-      var items = itemFactory.getItems(),
-          item = {ranges: 'ranges', id: 1};
-
-      itemFactory.addItem(item);
-      expect(items[1]).toBe(item);
-    });
-  });*/
 });

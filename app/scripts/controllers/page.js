@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('svr2App')
-  .controller('PageCtrl', function ($scope, pageFactory) {
+  .controller('PageCtrl', function ($scope, pageFactory, itemFactory) {
 	init();
 
 	function init(){
@@ -16,4 +16,7 @@ angular.module('svr2App')
 	$scope.onMouseAction = function(up){
 		pageFactory.setMouse('mouseUp', up);
 	}
+
+	$scope.items = itemFactory.getItems();
+
   });

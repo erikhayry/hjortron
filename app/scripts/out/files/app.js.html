@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>services/itemFactory.js</title>
+    <title>app.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,67 +84,119 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: services/itemFactory.js</h1>
+                        <h1 class="file-heading">File: app.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x27;use strict&#x27;;
 /**
-Service for items
+The main app
 
-@class itemFactory 
+@class svr2App 
 **/
-angular.module(&#x27;svr2App&#x27;)
-  .service(&#x27;itemFactory&#x27;, function itemFactory() {
-    var factory = {};
+angular.module(&#x27;svr2App&#x27;, [])
 
-	/**
-	Returns item
+  .config(function ($routeProvider) {
+      /**
+      Sets upp the routing for the app
 
-	@method itemFactory.getItem
-	@param {String} id of item
-	@return {object} item of id
-	**/
-	factory.getItem = function(id){
-	    return items[id];
-	}
+      @property $routeProvider
+      @type angualr function
+      **/
+      $routeProvider
+          .when(&#x27;/setup&#x27;,
+              {
+                  templateUrl: &#x27;/partials/setup.html&#x27;
+              })
+          .when(&#x27;/setup/itemId/addPostion/:rangeStart&#x27;,
+            {
+              templateUrl: &#x27;/partials/setup.html&#x27;
+            })
+          .otherwise({ redirectTo: &#x27;/setup&#x27; });
+  })
+  /**
+  Timebar directive
 
-	/**
-	Get all items
+  @property timeBar
+  @type directive
+  **/
+  .directive(&#x27;timeBar&#x27;, function(pageFactory){
+  var linker = function (scope, element) {
+      function findPos(el) {
+          var posX = el.offsetLeft;
+          while (el.offsetParent) {
+            posX = posX + el.offsetParent.offsetLeft;
+            if (el == document.getElementsByTagName(&#x27;body&#x27;)[0]) {
+              break;
+            } else {
+              el = el.offsetParent;
+            }
+          }
+          return posX;
+      }
 
-	@method itemFactory.getItems
-	@return {object} items
-	**/
-	factory.getItems = function(){
-	    return items;
-	}
+      function updateTimeBar(){
+        pageFactory.setElements(&#x27;timeBar&#x27;, {
+                        &#x27;left&#x27; : findPos(element[0]),
+                        &#x27;width&#x27; : element[0].offsetWidth
+                        }
+                  )
+      }
 
-	/**
-	Adds one item to items
+      updateTimeBar();
+      //TODO sort out how to fix size changes
+      //setInterval(updateTimeBar, 1000);
+    };
+    return {
+      &#x27;restrict&#x27; : &#x27;E&#x27;,
+      &#x27;transclude&#x27; : true,
+      &#x27;templateUrl&#x27; : &#x27;/directives/timeBar.html&#x27;,
+      &#x27;replace&#x27; : true,
+      &#x27;link&#x27; : linker 
+    }
+  })
+  /**
+  Range directive
 
-	@method itemFactory.addItem
-	@param {object} item object
-	@return {object} items
-	**/
-	factory.addItem = function(item){
-		items[item.id] = item;
-	}
+  @property range
+  @type directive
+  **/
+  .directive(&#x27;range&#x27;, function(){
+    return {
+      &#x27;require&#x27;: &#x27;^timeBar&#x27;,
+      &#x27;restrict&#x27; : &#x27;E&#x27;,
+      &#x27;templateUrl&#x27; : &#x27;/directives/range.html&#x27;,
+      &#x27;replace&#x27; : true
+    }
+  })
+  /**
+  Needle directive
 
-	/**
-	Removes items from items
+  @property needle
+  @type directive
+  **/
+  .directive(&#x27;needle&#x27;, function(){
+    return {
+      &#x27;require&#x27;: &#x27;^timeBar&#x27;,
+        &#x27;restrict&#x27; : &#x27;E&#x27;,
+        &#x27;templateUrl&#x27; : &#x27;/directives/needle.html&#x27;,
+        &#x27;replace&#x27; : true
+    }
+  })
+  /**
+  videoHolder directive
 
-	@method itemFactory.addItem
-	@param {string} id of item
-	**/
-	factory.removeItem = function(id){
-	
-	}
-
-	var items = {};
-
-	return factory;
-
-  });
+  @property videoHolder
+  @type directive
+  **/
+  .directive(&#x27;videoHolder&#x27;, function(){
+    return {
+        &#x27;restrict&#x27; : &#x27;E&#x27;,
+      &#x27;transclude&#x27; : true,
+        &#x27;templateUrl&#x27; : &#x27;/directives/videoHolder.html&#x27;,
+        &#x27;replace&#x27; : true
+    } 
+  })
 
     </pre>
 </div>

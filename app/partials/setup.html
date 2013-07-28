@@ -1,5 +1,8 @@
+<ul>
+	<li ng-repeat="item in items">{{item.id}}</li>
+</ul>
 <video-holder></video-holder>
 <time-bar>
 	<needle></needle>
-    <range ng-repeat="range in ranges"></range>
+    <range ng-repeat="range in item.ranges"></range>
 </time-bar>

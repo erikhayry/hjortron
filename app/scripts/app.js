@@ -1,7 +1,18 @@
 'use strict';
+/**
+The main app
 
+@class svr2App 
+**/
 angular.module('svr2App', [])
+
   .config(function ($routeProvider) {
+      /**
+      Sets upp the routing for the app
+
+      @property $routeProvider
+      @type angualr function
+      **/
       $routeProvider
           .when('/setup',
               {
@@ -13,7 +24,12 @@ angular.module('svr2App', [])
             })
           .otherwise({ redirectTo: '/setup' });
   })
+  /**
+  Timebar directive
 
+  @property timeBar
+  @type directive
+  **/
   .directive('timeBar', function(pageFactory){
   var linker = function (scope, element) {
       function findPos(el) {
@@ -30,6 +46,7 @@ angular.module('svr2App', [])
       }
 
       function updateTimeBar(){
+        console.log('updateTimeBar()')
         pageFactory.setElements('timeBar', {
                         'left' : findPos(element[0]),
                         'width' : element[0].offsetWidth
@@ -49,14 +66,26 @@ angular.module('svr2App', [])
       'link' : linker 
     }
   })
+  /**
+  Range directive
+
+  @property range
+  @type directive
+  **/
   .directive('range', function(){
     return {
       'require': '^timeBar',
-        'restrict' : 'E',
-        'templateUrl' : '/directives/range.html',
-        'replace' : true
+      'restrict' : 'E',
+      'templateUrl' : '/directives/range.html',
+      'replace' : true
     }
   })
+  /**
+  Needle directive
+
+  @property needle
+  @type directive
+  **/
   .directive('needle', function(){
     return {
       'require': '^timeBar',
@@ -65,6 +94,12 @@ angular.module('svr2App', [])
         'replace' : true
     }
   })
+  /**
+  videoHolder directive
+
+  @property videoHolder
+  @type directive
+  **/
   .directive('videoHolder', function(){
     return {
         'restrict' : 'E',

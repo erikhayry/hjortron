@@ -8,16 +8,18 @@ angular.module('svr2App')
     	return mouse;
     }
 
-    factory.getElement = function(key){
-    	return elements[key];
-    }
-
     factory.setMouse = function(key, value){
     	mouse[key] = value;
     }
 
+    //do I need service for this?
+    factory.getElement = function(key){
+        return elements[key];
+    }
+
     factory.setElements = function(key, value){
     	elements[key] = value;
+        console.log(elements)
     }
 
 	var mouse = {
@@ -26,7 +28,6 @@ angular.module('svr2App')
 			}
 
 	var elements = {}
-
 
 
     return factory;

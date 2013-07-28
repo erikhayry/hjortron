@@ -1,11 +1,12 @@
 'use strict';
+
 /**
 Service for items
 
 @class itemFactory 
 **/
 angular.module('svr2App')
-  .service('itemFactory', function itemFactory() {
+  .service('itemFactory', function itemFactory(rangeService) {
     var factory = {};
 
 	/**
@@ -36,8 +37,36 @@ angular.module('svr2App')
 	@param {object} item object
 	@return {object} items
 	**/
-	factory.addItem = function(item){
+	factory.addItem = function(id){
+		var item = {
+			id : id,
+            ranges: rangeService.getRanges(),
+            addRange: function(start, stop){
+                rangeService.addRange(item.ranges, start, stop);
+                return item;
+            },
+            removeRange: function(start){
+                rangeService.removeRange(item.ranges, start);
+                return item;
+            },
+            updateRange: function updateRange(oldStart, start, stop){
+                rangeService.updateRange(item.ranges, oldStart, start, stop)
+                return item;
+            },
+            getRangeIndex: function(start){
+                return rangeService.getRangeIndex(item.ranges, start);
+            },
+            getRange: function getRange(start){
+                return rangeService.getRange(item.ranges, start);
+            },
+            hasRange: function hasRange(currentPosition){
+                return rangeService.hasRange(item.ranges, currentPosition);
+            }
+		}
+
 		items[item.id] = item;
+
+        return factory;
 	}
 
 	/**
@@ -53,5 +82,6 @@ angular.module('svr2App')
 	var items = {};
 
 	return factory;
-
   });
+
+
