@@ -6,34 +6,50 @@ angular.module('svr2App')
     var _this = this,
     	_sortRanges = function(array){
         	array.sort(function(a, b) {
-          	return a.start - b.start;
-        });
-    }
+          	 return a.start - b.start;
+            })
+        },
+        _isValidRange = function(ranges, start, stop){
+            return !(_this.hasRange(ranges, start) || _this.hasRange(ranges, stop)) &&
+                start >= 0 && start <= 100 &&
+                stop >= 0 && stop <= 100 &&
+                start <= stop;
+        }
 
   	this.getRanges = function(){
   		return [];
   	}
 
   	this.addRange = function(ranges, start, stop){
-  		var startPos = start || 0,
-        stopPos = stop || 0;
-    
-        // add to time selector array
-        ranges.push({'start': startPos, 'stop': stopPos});
+        if(_isValidRange(ranges, start, stop)){
+      		var startPos = start || 0,
+            stopPos = stop || 0;
+        
+            // add to time selector array
+            ranges.push({'start': startPos, 'stop': stopPos});
+            ranges =  _sortRanges(ranges); // resort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
 
-        // resort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
-    	return _sortRanges(ranges);
+        }
+        else throw {name : "RangeError", message : "Range values not valid"};
+    	return ranges;
   	}
 
     this.getRange = function(ranges, index){
         return ranges[index];
     }
 
+    function InvalidAmountError(error){
+        console.log(error)
+    }
+
     this.updateRange = function(ranges, id, start, stop){
-        var range = _this.getRange(ranges, id);
-        range.start = start;
-        range.stop = stop;
-        return _sortRanges(ranges);
+        if(typeof id !== undefined && _isValidRange(ranges, start, stop) && id < ranges.length){        
+            var range = _this.getRange(ranges, id);
+            range.start = start;
+            range.stop = stop;
+            ranges =  _sortRanges(ranges);
+        }
+        return ranges;
     }
 
     this.getRangeIndex = function(ranges, start){
@@ -47,7 +63,7 @@ angular.module('svr2App')
 
     this.removeRange = function(ranges, start){
         var index = _this.getRangeIndex(ranges, start);
-        if(typeof index != undefined){
+        if(index != null){
             ranges.splice(index, 1);
             ranges = _sortRanges(ranges);
         }
