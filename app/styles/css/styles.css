@@ -124,3 +124,8 @@ body {
 .m-video-output {
   margin: 10px 0;
 }
+
+/* line 1, ../sass/states.scss */
+.is-error {
+  color: red;
+}

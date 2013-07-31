@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('svr2App')
-  .controller('PageCtrl', function ($scope, pageFactory, itemFactory) {
+  .controller('PageCtrl', function ($scope, pageFactory, itemFactory, errorFactory) {
 	init();
 
 	function init(){
 		$scope.mouse = pageFactory.getMouse();
+		$scope.errors = errorFactory.getErrors();
 		//$scope.elements = pageFactory.getElements();
 	}
 

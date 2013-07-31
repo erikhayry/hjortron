@@ -6,7 +6,7 @@ Service for items
 @class itemFactory 
 **/
 angular.module('svr2App')
-  .service('itemFactory', function itemFactory(rangeService) {
+  .service('itemFactory', function itemFactory(rangeService, errorFactory) {
     var factory = {};
 
 	/**
@@ -43,7 +43,15 @@ angular.module('svr2App')
     			id : id,
                 ranges: rangeService.getRanges(),
                 addRange: function(start, stop){
-                    rangeService.addRange(item.ranges, start, stop);
+                	try {
+                		rangeService.addRange(item.ranges, start, stop);
+                	}
+                	catch(error){
+                		errorFactory.addError('RangeError', {
+                			'message' : 'Range (' + start + ', ' + stop + ') not valid, not added',
+                			'where' : 'itemFactory addRange'
+                		});
+                	}
                     return item;	
                 },
                 removeRange: function(start){
@@ -68,7 +76,7 @@ angular.module('svr2App')
     		items[item.id] = item;
         }
         else{
-            throw {name : "ItemError", message : "Item already exist. Can't add item."}; 
+            throw {name : "ItemError", message : "Item already exist. Can't add item"}; 
         }    
         return factory;
 	}

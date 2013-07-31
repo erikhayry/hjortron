@@ -27,10 +27,10 @@ angular.module('svr2App')
         
             // add to time selector array
             ranges.push({'start': startPos, 'stop': stopPos});
-            ranges =  _sortRanges(ranges); // resort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
+            ranges = _sortRanges(ranges); // resort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
 
         }
-        else throw {name : "RangeError", message : "Range values not valid"};
+        else throw {name : 'RangeError', message : 'Range values not valid'};
     	return ranges;
   	}
 
@@ -38,17 +38,13 @@ angular.module('svr2App')
         return ranges[index];
     }
 
-    function InvalidAmountError(error){
-        console.log(error)
-    }
-
-    this.updateRange = function(ranges, id, start, stop){
-        if(typeof id !== undefined && _isValidRange(ranges, start, stop) && id < ranges.length){        
-            var range = _this.getRange(ranges, id);
+    this.updateRange = function(ranges, oldStart, start, stop){
+        //if(typeof id !== undefined && _isValidRange(ranges, start, stop) && id < ranges.length){  
+            var range = _this.getRange(ranges, _this.getRangeIndex(ranges, oldStart));
             range.start = start;
             range.stop = stop;
             ranges =  _sortRanges(ranges);
-        }
+        //}
         return ranges;
     }
 

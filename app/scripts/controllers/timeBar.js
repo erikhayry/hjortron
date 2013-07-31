@@ -46,15 +46,18 @@ angular.module('svr2App')
 	    var item1 = itemFactory.getItem(1);
 	    var item2 = itemFactory.getItem(2);
 
-        item1.addRange(0, 10)
+
+
+        $scope.item = itemFactory.getItem(1);
+
+        $scope.item.addRange(0, 10)
+            .addRange(-10, 100)
             .addRange(20, 20)
             .addRange(80, 100)
             .addRange(60, 70)
             .addRange(30, 40)
             .removeRange(20)
             .removeRange(40);
-
-        $scope.item = itemFactory.getItem(1);
 
         //Set needle values
         $scope.needle = {};
@@ -97,9 +100,10 @@ angular.module('svr2App')
         if (posPercentage < 0) {
           posPercentage = 0;
         }
-        
+        console.log('before')
         // range is currently being dragged
         if(_rangeDragBol){
+            console.log('statrt')
             // don't let start handler be after stop handler
             if(_currentTimeRangeObj.type === 'start'){
               // get closest siblings to current time range    
@@ -109,7 +113,9 @@ angular.module('svr2App')
               else if(siblingObj && siblingObj.stop > posPercentage - gap) {
                 posPercentage = siblingObj.stop + gap;
               }
-              $scope.item.updateRange(_currentTimeRangeObj.id, posPercentage, _currentTimeRangeObj.obj.stop);            
+              console.log(_currentTimeRangeObj.obj.start + ' ' + posPercentage + ' ' +  _currentTimeRangeObj.obj.stop)
+              $scope.item.updateRange(_currentTimeRangeObj.obj.start, posPercentage, _currentTimeRangeObj.obj.stop);
+              console.log($scope.item)            
             }
 
             // don't let stop handler be before start handler
