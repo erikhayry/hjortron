@@ -63,6 +63,7 @@ angular.module('svr2App')
             ranges.splice(index, 1);
             ranges = _sortRanges(ranges);
         }
+        else throw {name : 'RangeError', message : 'Range value not found'};
         return ranges;
     }
 

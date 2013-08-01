@@ -49,13 +49,21 @@ angular.module('svr2App')
                 	catch(error){
                 		errorFactory.addError('RangeError', {
                 			'message' : 'Range (' + start + ', ' + stop + ') not valid, not added',
-                			'where' : 'itemFactory addRange'
+                			'where' : 'itemFactory > addRange'
                 		});
                 	}
                     return item;	
                 },
                 removeRange: function(start){
-                    rangeService.removeRange(item.ranges, start);
+                	try{
+                		rangeService.removeRange(item.ranges, start);
+                	}
+                	catch(error){
+                		errorFactory.addError('RangeError', {
+                			'message' : 'Range (' + start +') not fund. Unable to remove',
+                			'where' : 'itemFactory > removeRange'
+                		})
+                	}
                     return item;
                 },
                 updateRange: function updateRange(oldStart, start, stop){

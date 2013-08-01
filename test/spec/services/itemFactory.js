@@ -71,11 +71,11 @@ describe('Service: itemFactory', function () {
         item.addRange(95, 95);
 
         //Add unvalid ranges
-        item.addRange(0, 10);
-        item.addRange(15, 25);
-        item.addRange(-10, -30);
-        item.addRange(120, 130);
-        item.addRange(15, 11);
+        item.addRange(0, 10); //add already existing range  
+        item.addRange(15, 25); //adding range that overlap an existing one
+        item.addRange(-10, -30); //add negative values
+        item.addRange(120, 130); //add values larger than 100
+        item.addRange(15, 11); //add value where stop is larger than start
 
         /*
         Move to range service testing
@@ -116,11 +116,14 @@ describe('Service: itemFactory', function () {
 
   describe('item.removeRange', function(){
       it('removes a range from the item', function(){
-        item.removeRange(0);
+        
+        item.removeRange(20);
+
+        //try to remove range that doesn't exist
         item.removeRange(4);
 
-        expect(item.ranges).not.toContain({start: 0, stop: 10});
-        expect(item.ranges[0]).toEqual({start: 20, stop: 30});
+        expect(item.ranges).not.toContain({start: 20, stop: 30});
+        expect(item.ranges[0]).toEqual({start: 0, stop: 10});
         expect(item.ranges[1]).toEqual({start: 80, stop: 90});       
       });
   });

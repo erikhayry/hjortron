@@ -1,5 +1,9 @@
 <ul class="is-error">
-	<li ng-repeat="error in errors">{{error.message}} in {{error.where}}</li>
+	<li ng-repeat="type in errors">
+		<ul>
+			<li ng-repeat="error in type">{{error.message}}</li>
+		</ul>
+	</li>
 </ul>
 
 <ul>
