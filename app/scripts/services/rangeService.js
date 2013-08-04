@@ -9,25 +9,28 @@ angular.module('svr2App')
           	 return a.start - b.start;
             })
         },
-        _isValidRange = function(ranges, start, stop){
-            return !(_this.hasRange(ranges, start) || _this.hasRange(ranges, stop)) &&
-                start >= 0 && start <= 100 &&
-                stop >= 0 && stop <= 100 &&
-                start <= stop;
-        }
-
+        _isValidRange = function(start, stop){
+            return  start >= 0 && start <= 100 &&
+                    stop >= 0 && stop <= 100 &&
+                    start <= stop;
+        },
+        _canAdd = function(ranges, start, stop){
+            return  !_this.hasRange(ranges, start) && 
+                    !_this.hasRange(ranges, stop) && 
+                    _isValidRange(start, stop);
+        };    
   	this.getRanges = function(){
   		return [];
   	}
 
   	this.addRange = function(ranges, start, stop){
-        if(_isValidRange(ranges, start, stop)){
+        if(_canAdd(ranges, start, stop)){
       		var startPos = start || 0,
             stopPos = stop || 0;
         
             // add to time selector array
             ranges.push({'start': startPos, 'stop': stopPos});
-            ranges = _sortRanges(ranges); // resort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
+            ranges = _sortRanges(ranges); // re-sort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
 
         }
         else throw {name : 'RangeError', message : 'Range values not valid'};
@@ -39,12 +42,14 @@ angular.module('svr2App')
     }
 
     this.updateRange = function(ranges, oldStart, start, stop){
-        //if(typeof id !== undefined && _isValidRange(ranges, start, stop) && id < ranges.length){  
-            var range = _this.getRange(ranges, _this.getRangeIndex(ranges, oldStart));
+        var rangeIndex = _this.getRangeIndex(ranges, oldStart);
+        if(rangeIndex !== null && _isValidRange(start, stop)){
+            var range = _this.getRange(ranges, rangeIndex);
             range.start = start;
             range.stop = stop;
             ranges =  _sortRanges(ranges);
-        //}
+        }
+        else throw {name: 'RangeError', message : 'Range not found or not valid'};
         return ranges;
     }
 
@@ -69,7 +74,9 @@ angular.module('svr2App')
 
     this.hasRange = function(ranges, value){
         for(var i = 0; i < ranges.length; i++){
-            if(value >= ranges[i].start && value <= ranges[i].stop) return true;
+            if(value >= ranges[i].start && value <= ranges[i].stop) {
+                return true;
+            }
         }
         return false;
     };

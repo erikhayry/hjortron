@@ -24,6 +24,13 @@ angular.module('svr2App', [])
             })
           .otherwise({ redirectTo: '/setup' });
   })
+  //use a resource library (http://www.benfarrell.com/2013/07/15/ideas-from-game-programming-a-resource-library-with-angularjs/)
+  .directive('library', function (pageFactory) {
+    return function (scope, element, attrs) {
+        pageFactory.setResource([attrs.library], element[0]);
+    }
+
+  })
   /**
   Timebar directive
 
@@ -31,8 +38,9 @@ angular.module('svr2App', [])
   @type directive
   **/
   .directive('timeBar', function(pageFactory){
-  var linker = function (scope, element) {
-      function findPos(el) {
+    var linker = function($scope, iElement){
+      // get left position of current handler el
+      var findPos = function(el) {
           var posX = el.offsetLeft;
           while (el.offsetParent) {
             posX = posX + el.offsetParent.offsetLeft;
@@ -43,27 +51,28 @@ angular.module('svr2App', [])
             }
           }
           return posX;
-      }
+      },
 
-      function updateTimeBar(){
-        console.log('updateTimeBar()')
-        pageFactory.setElements('timeBar', {
-                        'left' : findPos(element[0]),
-                        'width' : element[0].offsetWidth
-                        }
-                  )
-      }
+      setTimebar = function(timebar){
+        pageFactory.setTimebar('width', timebar.offsetWidth);
+        pageFactory.setTimebar('left', findPos(timebar));
+      },
 
-      updateTimeBar();
-      //TODO sort out how to fix size changes
-      //setInterval(updateTimeBar, 1000);
-    };
+      timebar = iElement[0];
+
+      setTimebar(timebar);  
+
+      window.onresize = function(){
+        setTimebar(timebar);
+      }
+    }
+
     return {
+      'link' : linker,
       'restrict' : 'E',
       'transclude' : true,
       'templateUrl' : '/directives/timeBar.html',
-      'replace' : true,
-      'link' : linker 
+      'replace' : true
     }
   })
   /**
@@ -89,9 +98,9 @@ angular.module('svr2App', [])
   .directive('needle', function(){
     return {
       'require': '^timeBar',
-        'restrict' : 'E',
-        'templateUrl' : '/directives/needle.html',
-        'replace' : true
+      'restrict' : 'E',
+      'templateUrl' : '/directives/needle.html',
+      'replace' : true
     }
   })
   /**
@@ -103,8 +112,18 @@ angular.module('svr2App', [])
   .directive('videoHolder', function(){
     return {
         'restrict' : 'E',
-      'transclude' : true,
+        'transclude' : true,
         'templateUrl' : '/directives/videoHolder.html',
         'replace' : true
     } 
   })
+
+  /*
+    Filters
+  */
+
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });

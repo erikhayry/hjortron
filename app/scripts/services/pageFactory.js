@@ -5,30 +5,40 @@ angular.module('svr2App')
     var factory = {};
 
     factory.getMouse = function(){
-    	return mouse;
+    	return library.mouse;
     }
 
-    factory.setMouse = function(key, value){
-    	mouse[key] = value;
+    factory.setMouse = function(name, value){
+    	library.mouse[name] = value;
     }
 
-    //do I need service for this?
-    factory.getElement = function(key){
-        return elements[key];
+    factory.setResource = function(name, element){
+        library.elements[name] = element
+        console.log('NAME ' + name)
+        console.log(library)
+        return library;
     }
 
-    factory.setElements = function(key, value){
-    	elements[key] = value;
-        console.log(elements)
+    factory.getResource = function(name){
+        return library.elements[name];
     }
 
-	var mouse = {
-				"mousePosition" : 0,
-				"mouseUp" : true
-			}
+    factory.setTimebar= function(name, value){
+        library.timebar[name] = value;
+    }
 
-	var elements = {}
+    factory.getTimebar= function(){
+        return library.timebar;
+    }
 
+	var library = {};
+    library.elements = {},
+    library.mouse = {
+                "mousePosition" : 0,
+                "mouseUp" : true
+            }    
+
+    library.timebar = {}        
 
     return factory;
   });

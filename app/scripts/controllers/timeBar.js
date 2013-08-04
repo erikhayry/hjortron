@@ -28,8 +28,6 @@ angular.module('svr2App')
         _needleDragBol = false,
         _currentTimeRangeObj = {};
 
-    console.log('TimeBarCtrl')    
-
     function init() {
     	console.log('init TimeBarCtrl')
         //every time the needle or the ranges updates check status of needle
@@ -37,19 +35,12 @@ angular.module('svr2App')
             $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value);
         }
 
-
-
-	
-
 	    itemFactory.addItem(1).addItem(2);
 
 	    var item1 = itemFactory.getItem(1);
 	    var item2 = itemFactory.getItem(2);
 
-
-
         $scope.item = itemFactory.getItem(1);
-
         $scope.item.addRange(0, 10)
             .addRange(-10, 100)
             .addRange(20, 20)
@@ -81,12 +72,12 @@ angular.module('svr2App')
     * @param xPos x position of pointer
     */
 
+    // TODO refactor and make more readable
     function updateHandler(xPos) {
-        // get position of current handler el
-        var timeBar = pageFactory.getElement('timeBar'),
-            currentPos = xPos - timeBar.left,
+        var timeBar = pageFactory.getResource('timebar'),
+            currentPos = xPos - pageFactory.getTimebar().left,
             // convert to percentage
-            timeBarWidth = timeBar.width,
+            timeBarWidth = pageFactory.getTimebar().width,
             posPercentage = 100 * currentPos / timeBarWidth,
 
             // to prevent time range siblings overlap each other set gap value to be same as width of handler. Currently 10px hence the 10 below
@@ -100,10 +91,8 @@ angular.module('svr2App')
         if (posPercentage < 0) {
           posPercentage = 0;
         }
-        console.log('before')
-        // range is currently being dragged
+        // range is currently being dragged 
         if(_rangeDragBol){
-            console.log('statrt')
             // don't let start handler be after stop handler
             if(_currentTimeRangeObj.type === 'start'){
               // get closest siblings to current time range    
@@ -113,9 +102,7 @@ angular.module('svr2App')
               else if(siblingObj && siblingObj.stop > posPercentage - gap) {
                 posPercentage = siblingObj.stop + gap;
               }
-              console.log(_currentTimeRangeObj.obj.start + ' ' + posPercentage + ' ' +  _currentTimeRangeObj.obj.stop)
               $scope.item.updateRange(_currentTimeRangeObj.obj.start, posPercentage, _currentTimeRangeObj.obj.stop);
-              console.log($scope.item)            
             }
 
             // don't let stop handler be before start handler
@@ -127,7 +114,7 @@ angular.module('svr2App')
               else if(siblingObj && siblingObj.start < posPercentage + gap) {
                 posPercentage = siblingObj.start - gap;
               }
-              $scope.item.updateRange(_currentTimeRangeObj.id, _currentTimeRangeObj.obj.start, posPercentage);            
+              $scope.item.updateRange(_currentTimeRangeObj.obj.start, _currentTimeRangeObj.obj.start, posPercentage);            
             }
         }
 

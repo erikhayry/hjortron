@@ -140,35 +140,45 @@ describe('Service: itemFactory', function () {
 
   describe('item.updateRange', function(){
       it('updates an existing range', function(){
-/*        var id1 = item.getRangeIndex(20),
-            id2 = item.getRangeIndex(80),
-            id3 = item.getRangeIndex(70);
 
-        item.updateRange(id1, 95, 100);
-        item.updateRange(id2, 0, 10);
-        item.updateRange(id3, 0, 10);
-        item.updateRange(4, 70, 75);
+        item.updateRange(20, 95, 100);
+        
+        
+        //Add unvalid ranges
+        item.updateRange(70, 20, 30) //update a not existing range
+        item.updateRange(80, 0, 10); //updating range to be the same as existing one
+        item.updateRange(20, 5, 10); //updating range to overlap an existing one
+        item.updateRange(20, -10, -30); //update to negative values
+        item.updateRange(20, 120, 130); //update to values larger than 100
+        item.updateRange(20, 15, 11); //update to values where stop is larger than start
 
         expect(item.ranges[0]).toEqual({start: 0, stop: 10});
         expect(item.ranges[1]).toEqual({start: 80, stop: 90});      
-        expect(item.ranges[2]).toEqual({start: 95, stop: 100}); */        
+        expect(item.ranges[2]).toEqual({start: 95, stop: 100});         
       });
   });
 
   describe('item.getRange', function(){
       it('get range based on its index', function(){
-        var range = item.getRange(2);
-        expect(range).toEqual({start: 80, stop: 90});       
+        var range1 = item.getRange(2),
+            range2 = item.getRange(3);
+
+        expect(range1).toEqual({start: 80, stop: 90});       
+        expect(range2).toBeUndefined();  
       });
   });
 
   describe('item.hasRange', function(){
       it('returns true or false depending if any range of the item cover a position value', function(){
         var val1 = item.hasRange(7),
-            val2 = item.hasRange(75);
+            val2 = item.hasRange(0),
+            val3 = item.hasRange(90),
+            val4 = item.hasRange(75);
 
-        expect(val1).toBe(true)
-        expect(val2).toBe(false)
+        expect(val1).toBe(true);
+        expect(val2).toBe(true);
+        expect(val3).toBe(true);
+        expect(val4).toBe(false);
                
       });
   });

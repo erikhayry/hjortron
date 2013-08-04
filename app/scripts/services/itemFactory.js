@@ -67,7 +67,15 @@ angular.module('svr2App')
                     return item;
                 },
                 updateRange: function updateRange(oldStart, start, stop){
-                    rangeService.updateRange(item.ranges, oldStart, start, stop)
+                	try{
+                		rangeService.updateRange(item.ranges, oldStart, start, stop)
+                	}
+                	catch(error){
+                		errorFactory.addError('RangeError', {
+                			'message' : 'Range not found (' + oldStart + ') or not valid (' + start + ', ' + stop + '). Unable to update',
+                			'where' : 'itemFactory > updateRange'
+                		})
+                	}
                     return item;
                 },
                 getRangeIndex: function(start){
@@ -79,7 +87,7 @@ angular.module('svr2App')
                 hasRange: function hasRange(currentPosition){
                     return rangeService.hasRange(item.ranges, currentPosition);
                 }
-    		}
+    		};
 
     		items[item.id] = item;
         }
