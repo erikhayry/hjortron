@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('svr2App')
-  .controller('VideoCtrl', function ($scope,  $timeout, pageFactory, videoFactory) { 	
+  .controller('VideoCtrl', function ($scope, pageFactory, videoFactory) { 	
   	var video,
   		init = function(){
 	  		video = videoFactory.getVideo();

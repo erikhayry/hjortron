@@ -48,7 +48,8 @@ angular.module('svr2App')
             .addRange(60, 70)
             .addRange(30, 40)
             .removeRange(20)
-            .removeRange(40);
+            .removeRange(40)
+            .updateRange(80, 90, 100);
 
         //Set needle values
         $scope.needle = {};
@@ -61,7 +62,6 @@ angular.module('svr2App')
 
         //the currentTimeBarTimeVar is the only other value that should be used in other controllers.
         $scope.currentTimeBarTimeVar = $scope.needle.value;
-
     }
 
     init();

@@ -9,12 +9,13 @@ angular.module('svr2App')
         return video;
     }
 
-    factory.updateVideo = function(obj){
-        video[obj.type] = obj.value; 
+    factory.updateVideo = function(name, value){
+        video[name] = value; 
     }
 
     video = {
-        'src' :'assets/video/stockholm.mp4'
+        'src' : 'assets/video/stockholm.mp4',
+        'position' : 0 
     }
 
     return factory;  

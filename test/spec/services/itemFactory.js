@@ -141,20 +141,22 @@ describe('Service: itemFactory', function () {
   describe('item.updateRange', function(){
       it('updates an existing range', function(){
 
-        item.updateRange(20, 95, 100);
+        item.updateRange(20, 95, 100); //update to completely new non existing value
+        item.updateRange(80, 85, 90);  //update only the start value and to an old value of the same range
+        item.updateRange(95, 95, 99);  //update only the stop value and to an old value of the same range
         
         
         //Add unvalid ranges
         item.updateRange(70, 20, 30) //update a not existing range
-        item.updateRange(80, 0, 10); //updating range to be the same as existing one
+        item.updateRange(95, 0, 10); //updating range to be the same as another existing one
         item.updateRange(20, 5, 10); //updating range to overlap an existing one
         item.updateRange(20, -10, -30); //update to negative values
         item.updateRange(20, 120, 130); //update to values larger than 100
         item.updateRange(20, 15, 11); //update to values where stop is larger than start
 
         expect(item.ranges[0]).toEqual({start: 0, stop: 10});
-        expect(item.ranges[1]).toEqual({start: 80, stop: 90});      
-        expect(item.ranges[2]).toEqual({start: 95, stop: 100});         
+        expect(item.ranges[1]).toEqual({start: 85, stop: 90});      
+        expect(item.ranges[2]).toEqual({start: 95, stop: 99});         
       });
   });
 

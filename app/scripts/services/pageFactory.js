@@ -4,23 +4,21 @@ angular.module('svr2App')
   .service('pageFactory', function pageFactory() {
     var factory = {};
 
+    factory.setResource = function(name, element){
+        library.elements[name] = element
+        return library;
+    }
+
+    factory.getResource = function(name){
+        return library.elements[name];
+    }
+
     factory.getMouse = function(){
     	return library.mouse;
     }
 
     factory.setMouse = function(name, value){
     	library.mouse[name] = value;
-    }
-
-    factory.setResource = function(name, element){
-        library.elements[name] = element
-        console.log('NAME ' + name)
-        console.log(library)
-        return library;
-    }
-
-    factory.getResource = function(name){
-        return library.elements[name];
     }
 
     factory.setTimebar= function(name, value){

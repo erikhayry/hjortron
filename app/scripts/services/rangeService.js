@@ -43,7 +43,11 @@ angular.module('svr2App')
 
     this.updateRange = function(ranges, oldStart, start, stop){
         var rangeIndex = _this.getRangeIndex(ranges, oldStart);
-        if(rangeIndex !== null && _isValidRange(start, stop)){
+        if( rangeIndex !== null && 
+            _isValidRange(start, stop) &&
+            !_this.hasRange(ranges, start, rangeIndex) &&  // exclude the range it self 
+            !_this.hasRange(ranges, stop, rangeIndex)
+        ){
             var range = _this.getRange(ranges, rangeIndex);
             range.start = start;
             range.stop = stop;
@@ -72,9 +76,10 @@ angular.module('svr2App')
         return ranges;
     }
 
-    this.hasRange = function(ranges, value){
+    this.hasRange = function(ranges, value, exclude){
+
         for(var i = 0; i < ranges.length; i++){
-            if(value >= ranges[i].start && value <= ranges[i].stop) {
+            if(i !== exclude && value >= ranges[i].start && value <= ranges[i].stop) {
                 return true;
             }
         }
