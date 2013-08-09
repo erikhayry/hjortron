@@ -41,7 +41,7 @@ angular.module('svr2App')
         if(!factory.getItem(id)){
     		var item = {
     			id : id,
-                ranges: rangeService.getRanges(),
+                ranges: [],
                 addRange: function(start, stop){
                 	try {
                 		rangeService.addRange(item.ranges, start, stop);
@@ -84,10 +84,10 @@ angular.module('svr2App')
                 getRange: function getRange(start){
                     return rangeService.getRange(item.ranges, start);
                 },
-                hasRange: function hasRange(currentPosition){
-                    return rangeService.hasRange(item.ranges, currentPosition);
+                hasRange: function hasRange(currentPosition, exclude){
+                    return rangeService.hasRange(item.ranges, currentPosition, exclude);
                 }
-    		};
+    		}; 
 
     		items[item.id] = item;
         }

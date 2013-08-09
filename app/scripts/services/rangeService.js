@@ -18,10 +18,7 @@ angular.module('svr2App')
             return  !_this.hasRange(ranges, start) && 
                     !_this.hasRange(ranges, stop) && 
                     _isValidRange(start, stop);
-        };    
-  	this.getRanges = function(){
-  		return [];
-  	}
+        };
 
   	this.addRange = function(ranges, start, stop){
         if(_canAdd(ranges, start, stop)){
@@ -30,11 +27,9 @@ angular.module('svr2App')
         
             // add to time selector array
             ranges.push({'start': startPos, 'stop': stopPos});
-            ranges = _sortRanges(ranges); // re-sort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.
-
+            ranges = _sortRanges(ranges); // re-sort array so order is same as the visible order on time bar. This makes it's easier to find closest sibling later.    
         }
         else throw {name : 'RangeError', message : 'Range values not valid'};
-    	return ranges;
   	}
 
     this.getRange = function(ranges, index){
