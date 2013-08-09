@@ -29,16 +29,12 @@ angular.module('svr2App')
         _currentTimeRangeObj = {};
 
     function init() {
-    	console.log('init TimeBarCtrl')
         //every time the needle or the ranges updates check status of needle
         function modelUpdate(){
-            $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value);
+            $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value); //need a test?
         }
 
 	    itemFactory.addItem(1).addItem(2);
-
-	    var item1 = itemFactory.getItem(1);
-	    var item2 = itemFactory.getItem(2);
 
         $scope.item = itemFactory.getItem(1);
         $scope.item.addRange(0, 10)
@@ -200,6 +196,7 @@ angular.module('svr2App')
     */
 
     $scope.removeRange = function(start){
+        console.log('remove')
         $scope.item.removeRange(start);
     }
 
