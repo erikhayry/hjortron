@@ -22,7 +22,7 @@
 */
 
 angular.module('svr2App')
-  .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, videoFactory) {
+  .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, timeBarService, videoFactory) {
  // private variables
     var _rangeDragBol = false,
         _needleDragBol = false,
@@ -65,62 +65,33 @@ angular.module('svr2App')
     /**
     * Update position of time range handler element
     *
-    * @param xPos x position of pointer
+    * @param xPosition x position of pointer
     */
 
-    // TODO refactor and make more readable
-    function updateHandler(xPos) {
-        var timeBar = pageFactory.getResource('timebar'),
-            currentPos = xPos - pageFactory.getTimebar().left,
+    function updateHandler(xPosition) {
+        var currentPos = xPosition - pageFactory.getTimebar().left,
+            
             // convert to percentage
             timeBarWidth = pageFactory.getTimebar().width,
-            posPercentage = 100 * currentPos / timeBarWidth,
+            position = 100 * currentPos / timeBarWidth,
 
             // to prevent time range siblings overlap each other set gap value to be same as width of handler. Currently 10px hence the 10 below
             gap = 100 * 10 / timeBarWidth;
 
-        //stop moving if handlers reach either end of time bar
-        if (posPercentage > 100) {
-          posPercentage = 100;
-        }
-
-        if (posPercentage < 0) {
-          posPercentage = 0;
-        }
-        // range is currently being dragged 
+        // range is currently being dragged
+        //TODO I'm duplicating some checks that's also done in the range service.  
         if(_rangeDragBol){
-            // don't let start handler be after stop handler
-            if(_currentTimeRangeObj.type === 'start'){
-              // get closest siblings to current time range    
-              var siblingObj = $scope.item.getRange(_currentTimeRangeObj.id - 1);  
-              if(posPercentage > _currentTimeRangeObj.obj.stop) posPercentage = _currentTimeRangeObj.obj.stop;
-              // don't let the handler go past closest sibling
-              else if(siblingObj && siblingObj.stop > posPercentage - gap) {
-                posPercentage = siblingObj.stop + gap;
-              }
-              $scope.item.updateRange(_currentTimeRangeObj.obj.start, posPercentage, _currentTimeRangeObj.obj.stop);
-            }
-
-            // don't let stop handler be before start handler
-            if(_currentTimeRangeObj.type === 'stop'){
-              // get closest siblings to current time range
-              var siblingObj = $scope.item.getRange(_currentTimeRangeObj.id + 1);
-              if(posPercentage < _currentTimeRangeObj.obj.start) posPercentage = _currentTimeRangeObj.obj.start;
-              // don't let the handler go past closest sibling
-              else if(siblingObj && siblingObj.start < posPercentage + gap) {
-                posPercentage = siblingObj.start - gap;
-              }
-              $scope.item.updateRange(_currentTimeRangeObj.obj.start, _currentTimeRangeObj.obj.start, posPercentage);            
-            }
+            var newRangeValues = timeBarService.getRangeValues(_currentTimeRangeObj, position, gap);
+            $scope.item.updateRange(newRangeValues.oldstart, newRangeValues.start, newRangeValues.stop);
         }
 
         // the needle is current being dragged    
         if(_needleDragBol){
-            $scope.needle.value = posPercentage;
+            $scope.needle.value = position;
         }
 
         //set global timebar value TODO make working for range handler, currently not changing befoe needle is used
-        $scope.currentTimeBarTime = posPercentage;
+        $scope.currentTimeBarTime = position;
     }
 
     /*
@@ -141,7 +112,7 @@ angular.module('svr2App')
         _rangeDragBol = true;
 
         // set this element to current
-        _currentTimeRangeObj = {"obj": $scope.item.getRange(id),
+        _currentTimeRangeObj = {"item": $scope.item,
                                 "type": type,
                                 "id": id
                             }; 
