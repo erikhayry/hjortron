@@ -1,12 +1,39 @@
 'use strict';
 
 angular.module('svr2App')
-  .service('timeBarService', function timeBarService() {
+  .service('timeBarService', function timeBarService(pageFactory) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var _this = this;
 
+    this.getTimeBarValues = function(xPosition){
+	    var currentPos = xPosition - pageFactory.getTimebar().left,
+        
+        // convert to percentage
+        timeBarWidth = pageFactory.getTimebar().width,
+        position = 100 * currentPos / timeBarWidth,
+
+        // to prevent time range siblings overlap each other set gap value to be same as width of handler. Currently 10px hence the 10 below
+        gap = 100 * 10 / timeBarWidth;
+
+        return{
+        	gap : gap,
+        	position : position
+        }
+    }
+
+    this.getNeedleValue = function(position){
+        if (position > 100) {
+          position = 100;
+        }
+
+        if (position < 0) {
+          position = 0;
+        }
+
+        return position;    	
+    }
+
     this.getRangeValues = function(currentTimeRangeObj, position, gap){
-    	console.log(currentTimeRangeObj)
     	var object = currentTimeRangeObj.item.getRange(currentTimeRangeObj.id),
     		rangeValues = {},
     		siblingObj = {},

@@ -5,8 +5,8 @@ basePath = '';
 
 // list of files / patterns to load in the browser
 files = [
-  //JASMINE,
-  //JASMINE_ADAPTER,
+  JASMINE,
+  JASMINE_ADAPTER,
   'app/bower_components/angular/angular.js',
   'app/bower_components/angular-mocks/angular-mocks.js',
   'app/scripts/*.js',
@@ -48,7 +48,7 @@ autoWatch = true;
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-browsers = ['Chrome', 'PhantomJS'];
+browsers = ['Chrome'];
 
 // If browser does not capture in given timeout [ms], kill it
 captureTimeout = 5000;

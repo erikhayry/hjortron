@@ -68,32 +68,22 @@ angular.module('svr2App')
     * @param xPosition x position of pointer
     */
 
-    // TODO refactor and make more readable
     function updateHandler(xPosition) {
-        var timeBar = pageFactory.getResource('timebar'),
-            currentPos = xPosition - pageFactory.getTimebar().left,
-            
-            // convert to percentage
-            timeBarWidth = pageFactory.getTimebar().width,
-            position = 100 * currentPos / timeBarWidth,
-
-            // to prevent time range siblings overlap each other set gap value to be same as width of handler. Currently 10px hence the 10 below
-            gap = 100 * 10 / timeBarWidth;
+        var timeBarValues = timeBarService.getTimeBarValues(xPosition);    
 
         // range is currently being dragged
-        //TODO I'm duplicating some checks that's also done in the range service.  
         if(_rangeDragBol){
-            var newRangeValues = timeBarService.getRangeValues(_currentTimeRangeObj, position, gap);
-            $scope.item.updateRange(newRangeValues.oldStart, newRangeValues.start, newRangeValues.stop);
+            var newRangeValues = timeBarService.getRangeValues(_currentTimeRangeObj, timeBarValues.position, timeBarValues.gap);
+            $scope.item.updateRange(newRangeValues.oldstart, newRangeValues.start, newRangeValues.stop);
         }
 
         // the needle is current being dragged    
         if(_needleDragBol){
-            $scope.needle.value = position;
+            $scope.needle.value = timeBarService.getNeedleValue(timeBarValues.position);
         }
 
         //set global timebar value TODO make working for range handler, currently not changing befoe needle is used
-        $scope.currentTimeBarTime = position;
+        $scope.currentTimeBarTime = timeBarValues.position;
     }
 
     /*
