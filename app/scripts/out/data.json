@@ -14,7 +14,7 @@
             "name": "app.js",
             "modules": {},
             "classes": {
-                "svr2App": 1
+                "hjortronApp": 1
             },
             "fors": {},
             "namespaces": {}
@@ -34,9 +34,9 @@
             "line": 2,
             "description": "Service for items"
         },
-        "svr2App": {
-            "name": "svr2App",
-            "shortname": "svr2App",
+        "hjortronApp": {
+            "name": "hjortronApp",
+            "shortname": "hjortronApp",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -120,7 +120,7 @@
             "itemtype": "property",
             "name": "$routeProvider",
             "type": "angualr function",
-            "class": "svr2App"
+            "class": "hjortronApp"
         },
         {
             "file": "app.js",
@@ -129,7 +129,7 @@
             "itemtype": "property",
             "name": "timeBar",
             "type": "directive",
-            "class": "svr2App"
+            "class": "hjortronApp"
         },
         {
             "file": "app.js",
@@ -138,7 +138,7 @@
             "itemtype": "property",
             "name": "range",
             "type": "directive",
-            "class": "svr2App"
+            "class": "hjortronApp"
         },
         {
             "file": "app.js",
@@ -147,7 +147,7 @@
             "itemtype": "property",
             "name": "needle",
             "type": "directive",
-            "class": "svr2App"
+            "class": "hjortronApp"
         },
         {
             "file": "app.js",
@@ -156,7 +156,7 @@
             "itemtype": "property",
             "name": "videoHolder",
             "type": "directive",
-            "class": "svr2App"
+            "class": "hjortronApp"
         }
     ],
     "warnings": []

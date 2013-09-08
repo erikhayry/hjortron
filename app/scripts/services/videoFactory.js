@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('svr2App')
+angular.module('hjortronApp')
   .service('videoFactory', function videoFactory() {
     var factory = {},
         video = {};

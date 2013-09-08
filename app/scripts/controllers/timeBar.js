@@ -21,7 +21,7 @@
 
 */
 
-angular.module('svr2App')
+angular.module('hjortronApp')
   .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, timeBarService, videoFactory) {
  // private variables
     var _rangeDragBol = false,
@@ -68,7 +68,7 @@ angular.module('svr2App')
     * @param xPosition x position of pointer
     */
 
-    function updateHandler(xPosition) {
+    function _updateHandler(xPosition) {
         var timeBarValues = timeBarService.getTimeBarValues(xPosition);    
 
         // range is currently being dragged
@@ -171,7 +171,7 @@ angular.module('svr2App')
     $scope.$watch('mouse', function(){
         if (_rangeDragBol || _needleDragBol) {
             if($scope.mouse.mouseUp) _rangeDragBol = _needleDragBol = false;
-            else updateHandler($scope.mouse.mousePosition);
+            else _updateHandler($scope.mouse.mousePosition);
         }
     }, true);
   });

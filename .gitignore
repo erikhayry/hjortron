@@ -6,3 +6,5 @@ app/bower_components
 app/assets/video
 *.css
 out/
+app/scripts/out/
+

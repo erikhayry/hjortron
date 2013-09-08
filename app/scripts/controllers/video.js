@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('svr2App')
+angular.module('hjortronApp')
   .controller('VideoCtrl', function ($scope, pageFactory, videoFactory) { 	
   	var video,
   		init = function(){

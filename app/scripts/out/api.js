@@ -2,7 +2,7 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "itemFactory",
-        "svr2App"
+        "hjortronApp"
     ],
     "modules": [],
     "allModules": []

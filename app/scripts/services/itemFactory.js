@@ -5,7 +5,7 @@ Service for items
 
 @class itemFactory 
 **/
-angular.module('svr2App')
+angular.module('hjortronApp')
   .service('itemFactory', function itemFactory(rangeService, errorFactory) {
     var factory = {};
 

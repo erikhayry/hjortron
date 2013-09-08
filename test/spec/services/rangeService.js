@@ -3,7 +3,7 @@
 describe('Service: rangeService', function () {
 
   // load the service's module
-  beforeEach(module('svr2App'));
+  beforeEach(module('hjortronApp'));
 
   // instantiate service
   var rangeService,

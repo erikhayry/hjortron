@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('svr2App')
+angular.module('hjortronApp')
   .service('timeBarService', function timeBarService(pageFactory) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var _this = this;

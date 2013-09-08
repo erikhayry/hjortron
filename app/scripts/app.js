@@ -2,9 +2,9 @@
 /**
 The main app
 
-@class svr2App 
+@class hjortronApp 
 **/
-angular.module('svr2App', [])
+angular.module('hjortronApp', [])
 
   .config(function ($routeProvider) {
       /**

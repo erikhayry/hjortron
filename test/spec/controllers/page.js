@@ -3,7 +3,7 @@
 describe('Controller: PageCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('svr2App'));
+  beforeEach(module('hjortronApp'));
 
   var PageCtrl,
     scope;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('svr2App')
+angular.module('hjortronApp')
   .controller('PageCtrl', function ($scope, pageFactory, itemFactory, errorFactory) {
 	init();
 
