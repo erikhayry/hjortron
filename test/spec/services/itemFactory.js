@@ -77,34 +77,6 @@ describe('Service: itemFactory', function () {
         item.addRange(120, 130); //add values larger than 100
         item.addRange(15, 11); //add value where stop is larger than start
 
-        /*
-        Move to range service testing
-
-        //add already existing range  
-        expect(function(){
-          item.addRange(0, 10);
-        }).toThrow(new Error("Range values not valid"));
-
-        //adding range that overlap an existing one
-        expect(function(){
-          item.addRange(15, 25);
-        }).toThrow(new Error("Range values not valid")); //Not sure if throwing an error here is the best option
-
-        //add negative values
-        expect(function(){
-          item.addRange(-10, -30);
-        }).toThrow(new Error("Range values not valid")); //Not sure if throwing an error here is the best option
-
-        //add values larger than 100
-        expect(function(){
-          item.addRange(120, 130);
-        }).toThrow(new Error("Range values not valid")); //Not sure if throwing an error here is the best option
-
-        //add value where stop is larger than start
-        expect(function(){
-          item.addRange(15, 11);
-        }).toThrow(new Error("Range values not valid")); //Not sure if throwing an error here is the best option*/
-
         expect(item.ranges[0]).toEqual({start: 0, stop: 10});
         expect(item.ranges[1]).toEqual({start: 20, stop: 30});
         expect(item.ranges[2]).toEqual({start: 60, stop: 70});      

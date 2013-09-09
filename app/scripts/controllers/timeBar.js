@@ -22,7 +22,7 @@
 */
 
 angular.module('hjortronApp')
-  .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, timeBarService, videoFactory) {
+  .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, timeBarFactory, videoFactory) {
  // private variables
     var _rangeDragBol = false,
         _needleDragBol = false,
@@ -69,17 +69,17 @@ angular.module('hjortronApp')
     */
 
     function _updateHandler(xPosition) {
-        var timeBarValues = timeBarService.getTimeBarValues(xPosition);    
+        var timeBarValues = timeBarFactory.getTimeBarValues(xPosition);    
 
         // range is currently being dragged
         if(_rangeDragBol){
-            var newRangeValues = timeBarService.getRangeValues(_currentTimeRangeObj, timeBarValues.position, timeBarValues.gap);
+            var newRangeValues = timeBarFactory.getRangeValues(_currentTimeRangeObj, timeBarValues.position, timeBarValues.gap);
             $scope.item.updateRange(newRangeValues.oldstart, newRangeValues.start, newRangeValues.stop);
         }
 
         // the needle is current being dragged    
         if(_needleDragBol){
-            $scope.needle.value = timeBarService.getNeedleValue(timeBarValues.position);
+            $scope.needle.value = timeBarFactory.getNeedleValue(timeBarValues.position);
         }
 
         //set global timebar value TODO make working for range handler, currently not changing befoe needle is used

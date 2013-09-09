@@ -5,10 +5,12 @@ angular.module('hjortronApp')
     var factory = {},
         video = {};
 
+    // TODO write test   
     factory.getVideo = function(){
         return video;
     }
 
+    // TODO write test
     factory.updateVideo = function(name, value){
         video[name] = value; 
     }

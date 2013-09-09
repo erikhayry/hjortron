@@ -103,6 +103,8 @@ angular.module('hjortronApp')
 	@method itemFactory.addItem
 	@param {string} id of item
 	**/
+
+    // TODO write test
 	factory.removeItem = function(id){
 	
 	}
