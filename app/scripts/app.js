@@ -30,6 +30,7 @@ angular.module('hjortronApp', [])
         pageFactory.setResource([attrs.library], element[0]);
     }
   })
+  
   /**
   Timebar directive
 
@@ -73,6 +74,7 @@ angular.module('hjortronApp', [])
       'replace' : true
     }
   })
+
   /**
   Range directive
 
@@ -87,6 +89,7 @@ angular.module('hjortronApp', [])
       'replace' : true
     }
   })
+
   /**
   Needle directive
 
@@ -101,6 +104,7 @@ angular.module('hjortronApp', [])
       'replace' : true
     }
   })
+
   /**
   videoHolder directive
 
