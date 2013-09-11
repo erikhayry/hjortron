@@ -34,12 +34,11 @@ angular.module('hjortronApp')
         return position;    	
     }
 
-    // TODO write test
     factory.getRangeValues = function(currentTimeRangeObj, position, gap){ // TODO move gap and position?
     	var object = currentTimeRangeObj.item.getRange(currentTimeRangeObj.id),
     		rangeValues = {},
     		siblingObj = {},
-    		type = currentTimeRangeObj.type ;
+    		type = currentTimeRangeObj.type;
 
     	//stop moving if handlers reach either end of time bar
         if (position > 100) {
