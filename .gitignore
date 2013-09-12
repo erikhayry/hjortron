@@ -2,9 +2,23 @@ node_modules
 dist
 .tmp
 .sass-cache
-app/bower_components
 app/assets/video
 *.css
 out/
 app/scripts/out/
 
+gs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
