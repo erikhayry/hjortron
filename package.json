@@ -24,13 +24,23 @@
     "matchdep": "~0.1.2",
     "connect-livereload": "~0.2.0",
     "grunt-google-cdn": "~0.2.0",
-    "grunt-ngmin": "~0.0.2"
+    "grunt-ngmin": "~0.0.2",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.2",
+    "karma-ng-scenario": "~0.1.0"
   },
   "engines": {
     "node": "~=0.8.0"
   },
-  "repository" : { 
-    "type" : "git",
-    "url" : "http://github.com/erikportin/hjortron.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/erikportin/hjortron.git"
   }
 }
