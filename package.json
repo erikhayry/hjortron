@@ -27,10 +27,10 @@
     "grunt-ngmin": "~0.0.2"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": "~=0.8.0"
   },
   "repository" : { 
     "type" : "git",
-     "url" : "http://github.com/erikportin/hjortron.git"
+    "url" : "http://github.com/erikportin/hjortron.git"
   }
 }
