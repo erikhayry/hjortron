@@ -10,7 +10,7 @@ describe('SVR scenario Test', function(){
 		})
 
 		it('adds four time ranges', function(){
-      		expect(repeater('.m-time-bar-range').count()).toBe(4);
+      		expect(repeater('.m-time-bar-range').count()).toBe(5);
 		});
 
 		it('removes and adds range', function(){
