@@ -22,7 +22,7 @@ exclude = [
 
 // test results reporter to use
 // possible values: dots || progress || growl
-reporters = ['progress'];
+reporters = ['growl'];
 
 // web server port
 port = 8080;
