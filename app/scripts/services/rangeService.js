@@ -52,6 +52,16 @@ angular.module('hjortronApp')
         return ranges;
     }
 
+    //Todo write test
+    this.updateCoordinates = function(ranges, start, x, y){
+        var rangeIndex = _this.getRangeIndex(ranges, start);
+        if( rangeIndex !== null){
+            var range = _this.getRange(ranges, rangeIndex);
+            range.x = x;
+            range.y = y;
+        }
+    }
+
     this.getRangeIndex = function(ranges, start){
         for(var i = 0; i < ranges.length; i++){
             if(ranges[i].start == start){

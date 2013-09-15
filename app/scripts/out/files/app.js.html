@@ -120,7 +120,7 @@ angular.module(&#x27;hjortronApp&#x27;, [])
   @property timeBar
   @type directive
   **/
-  .directive(&#x27;timeBar&#x27;, function(pageFactory){
+  .directive(&#x27;timeBar&#x27;, function(appFactory){
   var linker = function (scope, element) {
       function findPos(el) {
           var posX = el.offsetLeft;
@@ -136,7 +136,7 @@ angular.module(&#x27;hjortronApp&#x27;, [])
       }
 
       function updateTimeBar(){
-        pageFactory.setElements(&#x27;timeBar&#x27;, {
+        appFactory.setElements(&#x27;timeBar&#x27;, {
                         &#x27;left&#x27; : findPos(element[0]),
                         &#x27;width&#x27; : element[0].offsetWidth
                         }

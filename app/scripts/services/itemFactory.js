@@ -78,6 +78,20 @@ angular.module('hjortronApp')
                 	}
                     return item;
                 },
+                //TODO write test
+                updateCoordinates: function(start, x, y){
+                    console.log(start)
+                    try{
+                        rangeService.updateCoordinates(item.ranges, start, x, y)
+                    }
+                    catch(error){
+                        errorFactory.addError('RangeError', {
+                            'message' : 'Range not found (' + start + ')',
+                            'where' : 'itemFactory > updateCoordinates'
+                        })
+                    }
+                    return item;                    
+                },
                 getRangeIndex: function(start){
                     return rangeService.getRangeIndex(item.ranges, start);
                 },

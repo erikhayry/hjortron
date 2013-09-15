@@ -2,6 +2,7 @@
 
 /*
     Added to scope (make some more isolated?):
+        
         needle: no service used
             value = current postion on the timebar
             isAddable = true if 
@@ -22,30 +23,17 @@
 */
 
 angular.module('hjortronApp')
-  .controller('TimeBarCtrl', function ($scope, pageFactory, itemFactory, timeBarFactory, videoFactory) {
+  .controller('TimeBarCtrl', function ($scope, itemFactory, timeBarFactory, videoFactory) {
  // private variables
     var _rangeDragBol = false,
         _needleDragBol = false,
         _currentTimeRangeObj = {};
 
-    function init() {
+    function _init() {
         //every time the needle or the ranges updates check status of needle
         function modelUpdate(){
             $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value); //need a test?
         }
-
-	    itemFactory.addItem(1).addItem(2);
-
-        $scope.item = itemFactory.getItem(1);
-        $scope.item.addRange(0, 10)
-            .addRange(-10, 100)
-            .addRange(20, 20)
-            .addRange(80, 100)
-            .addRange(60, 70)
-            .addRange(30, 40)
-            .removeRange(20)
-            .removeRange(40)
-            .updateRange(80, 90, 100);
 
         //Set needle values
         $scope.needle = {};
@@ -56,11 +44,12 @@ angular.module('hjortronApp')
 
         $scope.needle.value = 0;
 
-        //the currentTimeBarTimeVar is the only other value that should be used in other controllers.
         $scope.currentTimeBarTimeVar = $scope.needle.value;
+
+
     }
 
-    init();
+    _init();
 
     /**
     * Update position of time range handler element
@@ -107,7 +96,7 @@ angular.module('hjortronApp')
         _currentTimeRangeObj = {"item": $scope.item,
                                 "type": type,
                                 "id": id
-                            }; 
+                            };             
     }
 
     /**

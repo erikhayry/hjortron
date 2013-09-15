@@ -1,16 +1,15 @@
 <div class="m-time-bar-range">
-
 	<div 	class="m-time-bar-range-bg" 
 			style='left:{{range.start}}%; width:{{range.stop - range.start}}%'>
 	</div>
 
-	<div 	ng-mouseover="onRangeHolderHover('start', range.start)" 
+	<div 	ng-mouseover="onRangeHolderHover('start', range.start, true)" 
 			ng-mousedown="onRangeHolderDrag($event, 'start', range.start)" 
 			class="m-time-bar-range-start" 
 			style="left: {{range.start}}%">
 	</div>
 
-	<div 	ng-mouseover="onRangeHolderHover('stop', range.start)" 
+	<div 	ng-mouseover="onRangeHolderHover('stop', range.start, true)" 
 			ng-mousedown="onRangeHolderDrag($event, 'stop', range.start)" 
 			class="m-time-bar-range-stop" 
 			style="left: {{range.stop}}%" 
@@ -24,7 +23,7 @@
 	</button>
 	
 	<a 	class="m-time-bar-range-add-pos-btn" 
-		href="#/setup/itemId/addPostion/{{range.start}}" 
+		href="#/setup/item/{{item.id}}/range/{{range.start}}" 
 		style="left: {{range.start}}%">
 		Add start position
 	</a>

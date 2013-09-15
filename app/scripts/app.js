@@ -14,34 +14,50 @@ angular.module('hjortronApp', ['timeBarDirective', 'videoHolderDirective'])
       @type angualr function
       **/
       $routeProvider
-          .when('/setup',
+          .when('/setup/:itemId',
               {
-                  templateUrl: '/partials/setup.html'
+                  templateUrl: '/partials/itemSetup.html'
               })
-          .when('/setup/itemId/addPostion/:rangeStart',
+          .when('/setup/item/:itemId/range/:rangeStart',
             {
-              templateUrl: '/partials/setup.html'
+              templateUrl: '/partials/rangeSetup.html'
             })
-          .otherwise({ redirectTo: '/setup' });
+          .otherwise({ redirectTo: '/setup/item/:itemId' });
   })
+
   //resource library (http://www.benfarrell.com/2013/07/15/ideas-from-game-programming-a-resource-library-with-angularjs/)
-  .directive('library', function (pageFactory) {
+  .directive('library', function (appFactory) {
     return function (scope, element, attrs) {
-        pageFactory.setResource([attrs.library], element[0]);
+        appFactory.setResource([attrs.library], element[0]);
     }
   })
 
   /**
-  Range directive
+  Range draggable directive
 
   @property range
   @type directive
   **/
-  .directive('range', function(){
+  .directive('rangeDraggable', function(){
     return {
       'require': '^timeBar',
       'restrict' : 'E',
-      'templateUrl' : '/directives/range.html',
+      'templateUrl' : '/directives/rangeDraggable.html',
+      'replace' : true
+    }
+  })
+
+  /**
+  Range editable directive
+
+  @property range
+  @type directive
+  **/
+  .directive('rangeEditable', function(){
+    return {
+      'require': '^timeBar',
+      'restrict' : 'E',
+      'templateUrl' : '/directives/rangeEditable.html',
       'replace' : true
     }
   })

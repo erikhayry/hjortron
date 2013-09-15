@@ -1,6 +1,5 @@
 module.exports = function(config) {
     config.set({
-
 		// Karma E2E configuration
 
 		// base path, that will be used to resolve files and exclude

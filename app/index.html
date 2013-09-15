@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="styles/css/styles.css">
         <!-- endbuild -->
 </head>
-  <body ng-controller="PageCtrl" ng-mousemove="onMouseMove($event)" ng-mouseup="onMouseAction(true)" ng-mousedown="onMouseAction(false)">
+  <body ng-controller="AppCtrl" ng-mousemove="onMouseMove($event)" ng-mouseup="onMouseAction(true)" ng-mousedown="onMouseAction(false)">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -52,17 +52,19 @@
         <script src="scripts/directives/videoHolderDirective.js"></script>
 
         <!-- services -->
+        <script src="scripts/services/appFactory.js"></script>
         <script src="scripts/services/itemFactory.js"></script>
-        <script src="scripts/services/pageFactory.js"></script>
         <script src="scripts/services/videoFactory.js"></script>
         <script src="scripts/services/rangeService.js"></script>
         <script src="scripts/services/errorFactory.js"></script>
         <script src="scripts/services/timeBarFactory.js"></script>
 
         <!-- controllers -->
-        <script src="scripts/controllers/page.js"></script>
+        <script src="scripts/controllers/app.js"></script>
         <script src="scripts/controllers/timeBar.js"></script>
         <script src="scripts/controllers/video.js"></script>
+        <script src="scripts/controllers/itemSetup.js"></script>
+        <script src="scripts/controllers/rangeSetup.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,0 +1,14 @@
+<div class="m-time-bar-range" ng-class="isActiveRange(range.start)">
+	<div 	class="m-time-bar-range-bg" 
+			style='left:{{range.start}}%; width:{{range.stop - range.start}}%'>
+	</div>
+
+	<div 	class="m-time-bar-range-start" 
+			style="left: {{range.start}}%">
+	</div>
+
+	<div 	class="m-time-bar-range-stop" 
+			style="left: {{range.stop}}%" 
+			data-id='{{factory.getRangeIndex(start)}}'>
+	</div>
+</div>

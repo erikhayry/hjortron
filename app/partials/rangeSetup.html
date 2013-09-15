@@ -1,0 +1,18 @@
+<div ng-controller="RangeSetupCtrl">
+
+
+	<video-holder></video-holder>
+
+	<time-bar>
+	    <range-editable ng-repeat="range in item.ranges"></range-editable>
+	</time-bar>
+
+	<ul class="is-error">
+		<li ng-repeat="type in errors">
+			<ul>
+				<li ng-repeat="error in type | reverse">{{error.message}}</li>
+			</ul>
+		</li>
+	</ul>
+
+</div>

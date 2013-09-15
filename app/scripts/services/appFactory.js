@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hjortronApp')
-  .service('pageFactory', function pageFactory() {
+  .service('appFactory', function appFactoryF() {
     var factory = {};
 
     // TODO write test
@@ -23,13 +23,13 @@ angular.module('hjortronApp')
     	library.mouse[name] = value;
     }
 
-    // TODO write test
-    factory.setTimebar= function(name, value){
+    // TODO make generic
+    factory.setTimebar = function(name, value){
         library.timebar[name] = value;
     }
 
-    // TODO write test
-    factory.getTimebar= function(){
+    // TODO make generic
+    factory.getTimebar = function(){
         return library.timebar;
     }
 
@@ -40,7 +40,9 @@ angular.module('hjortronApp')
                 "mouseUp" : true
             }    
 
-    library.timebar = {}        
+    library.timebar = {
+        'range' : { 'start' : 0, 'isEditable' : false}
+    };
 
     return factory;
   });

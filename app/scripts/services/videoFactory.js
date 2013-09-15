@@ -12,7 +12,7 @@ angular.module('hjortronApp')
 
     // TODO write test
     factory.updateVideo = function(name, value){
-        video[name] = value; 
+        video[name] = value;
     }
 
     video = {
