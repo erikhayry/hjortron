@@ -8,6 +8,7 @@ angular.module('videoHolderDirective', [])
   .directive('videoHolder', function(videoFactory){
     var linker = function($scope, iElement, $window){
       var videoEl = iElement[0].getElementsByTagName('video')[0]; 
+      
       $scope.$watch('currentTimeBarTime', function(){      
         try{
           videoEl.currentTime = $scope.currentTimeBarTime;

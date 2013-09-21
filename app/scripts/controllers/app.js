@@ -1,13 +1,10 @@
 'use strict';
 
 angular.module('hjortronApp')
-  .controller('AppCtrl', function ($scope, appFactory, itemFactory, errorFactory) {
-	init();
+  .controller('AppCtrl', function ($scope, mouseFactory, itemFactory, errorFactory) {
 
-	function init(){
-		$scope.mouse = appFactory.getMouse();
+	function _init(){
 		$scope.errors = errorFactory.getErrors();
-		//$scope.elements = appFactory.getElements();
 
 		var itemId = 1;
 		if(!itemFactory.getItem(itemId)){
@@ -26,14 +23,13 @@ angular.module('hjortronApp')
         }
 	}
 
+	_init();
+
 	$scope.onMouseMove = function(e){
-		appFactory.setMouse('mousePosition', e.x);
+		mouseFactory.setMouse('mousePosition', e.x);
 	}
 
-	$scope.onMouseAction = function(up){
-		appFactory.setMouse('mouseUp', up);
+	$scope.onMouseAction = function(isUp){
+		mouseFactory.setMouse('mouseUp', isUp);
 	}
-
-	$scope.items = itemFactory.getItems();
-
   });

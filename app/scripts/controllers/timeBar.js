@@ -1,29 +1,17 @@
 "use strict";
 
 /*
-    Added to scope (make some more isolated?):
-        
-        needle: no service used
-            value = current postion on the timebar
-            isAddable = true if 
+  Added to scope
 
-        ranges: get and sets all values in the itemFactory
-            range: id same as index in the array
-                start
-                stop
+  - objects
+    needle
 
-        currentTimeBarTimeVar: contains value of the current ACTIVE range handler or needle. Used in the video controller
-
-        onRangeHolderDrag() event
-        onNeedleDrag() event
-
-        addRange()
-        removeRange()
-
+  - functions
+    onMouseClick
 */
 
 angular.module('hjortronApp')
-  .controller('TimeBarCtrl', function ($scope, itemFactory, timeBarFactory, videoFactory) {
+  .controller('TimeBarCtrl', function ($scope, itemFactory, timeBarFactory, videoFactory, mouseFactory) {
  // private variables
     var _rangeDragBol = false,
         _needleDragBol = false,
@@ -31,22 +19,25 @@ angular.module('hjortronApp')
 
     function _init() {
         //every time the needle or the ranges updates check status of needle
-        function modelUpdate(){
-            $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value); //need a test?
+        function _modelUpdate(){
+            $scope.needle.isAddable = !$scope.item.hasRange($scope.needle.value);
         }
 
         //Set needle values
-        $scope.needle = {};
+        $scope.needle = {
+            'value' : 0
+        };
 
-        // watch for changes to ranges and needle. (check performance)
-        $scope.$watch('item',  modelUpdate, true);
-        $scope.$watch('needle',  modelUpdate, true);
-
-        $scope.needle.value = 0;
-
-        $scope.currentTimeBarTimeVar = $scope.needle.value;
+        //get the mouse
+        $scope.mouse = mouseFactory.getMouse();
 
 
+        // watch for changes to ranges and needle.
+        $scope.$watch('item',  _modelUpdate, true);
+        $scope.$watch('needle',  _modelUpdate, true);
+
+        //
+        $scope.item = itemFactory.getItem(1);
     }
 
     _init();

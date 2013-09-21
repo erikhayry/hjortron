@@ -6,6 +6,10 @@ app/assets/video
 *.css
 out/
 app/scripts/out/
+.bowerrc
+.editorconfig
+.gitattributes
+.jshintrc
 
 gs and databases #
 ######################

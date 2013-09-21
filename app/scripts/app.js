@@ -14,21 +14,21 @@ angular.module('hjortronApp', ['timeBarDirective', 'videoHolderDirective'])
       @type angualr function
       **/
       $routeProvider
-          .when('/setup/:itemId',
-              {
-                  templateUrl: '/partials/itemSetup.html'
-              })
+          .when('/setup/item/:itemId',
+            {
+                templateUrl: '/partials/itemSetup.html'
+            })
           .when('/setup/item/:itemId/range/:rangeStart',
             {
               templateUrl: '/partials/rangeSetup.html'
             })
-          .otherwise({ redirectTo: '/setup/item/:itemId' });
+          .otherwise({ redirectTo: '/setup/item/1' });
   })
 
   //resource library (http://www.benfarrell.com/2013/07/15/ideas-from-game-programming-a-resource-library-with-angularjs/)
-  .directive('library', function (appFactory) {
+  .directive('library', function (elementLibrary) {
     return function (scope, element, attrs) {
-        appFactory.setResource([attrs.library], element[0]);
+        elementLibrary.set(attrs.library, 'el', element[0]);
     }
   })
 

@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('hjortronApp')
-  .service('timeBarFactory', function timeBarFactory(appFactory) {
+  .service('timeBarFactory', function timeBarFactory(elementLibrary) {
     // AngularJS will instantiate a singleton by calling "new" on factory function
     var factory = {};
 
     // TODO write test
     factory.getTimeBarValues = function(xPosition){
-	    var currentPos = xPosition - appFactory.getTimebar().left,
+	    var currentPos = xPosition - elementLibrary.get('timebar').left,
         
         // convert to percentage
-        timeBarWidth = appFactory.getTimebar().width,
+        timeBarWidth = elementLibrary.get('timebar').width,
         position = 100 * currentPos / timeBarWidth,
 
         // to prevent time range siblings overlap each other set gap value to be same as width of handler. Currently 10px hence the 10 below

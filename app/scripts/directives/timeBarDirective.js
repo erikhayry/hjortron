@@ -5,7 +5,7 @@ Timebar directive
 @type directive
 **/
 angular.module('timeBarDirective', [])
-	.directive('timeBar', function(appFactory){
+	.directive('timeBar', function(elementLibrary){
 		var linker = function($scope, iElement){
 		  // get left position of current handler el
 		  var findPos = function(el) {
@@ -22,21 +22,19 @@ angular.module('timeBarDirective', [])
 		  },
 
 		  setTimebar = function(timebar){
-		    appFactory.setTimebar('width', timebar.offsetWidth);
-		    appFactory.setTimebar('left', findPos(timebar));
+		    elementLibrary.set('timebar', 'width', timebar.offsetWidth);
+		    elementLibrary.set('timebar', 'left', findPos(timebar));
 		  },
 
 		  timebar = iElement[0];
 		  setTimebar(timebar);
 		}
 
-
-
 		return {
-		  'link' : linker,
-		  'restrict' : 'E',
-		  'transclude' : true,
-		  'templateUrl' : '/directives/timeBar.html',
-		  'replace' : true
+			'link' : linker,
+			'restrict' : 'E',
+			'transclude' : true,
+			'templateUrl' : '/directives/timeBar.html',
+			'replace' : true
 		}
 	})
