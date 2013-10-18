@@ -1,28 +1,28 @@
 'use strict';
 
-describe('Service: appFactory', function () {
+describe('Service: pageFactory', function () {
 
   // load the service's module
   beforeEach(module('hjortronApp'));
 
   // instantiate service
-  var appFactory;
-  beforeEach(inject(function (_appFactory_) {
-    appFactory = _appFactory_;
+  var pageFactory;
+  beforeEach(inject(function (_pageFactory_) {
+    pageFactory = _pageFactory_;
   }));
 
   describe('getMouse()', function() {
     it('returns an object', function () {
-      var mouse = appFactory.getMouse();
-      expect(mouse).not.toBeNull();
+      /*var mouse = pageFactory.getMouse();
+      expect(mouse).not.toBeNull();*/
     });
   });
 
   describe('setMouse()', function() {
     it('sets the current mouse value', function () {
-      appFactory.setMouse('mousePosition', 10);
-      appFactory.setMouse('mouseUp', true);
-      expect(appFactory.getMouse()).toEqual({'mousePosition': 10, 'mouseUp': true});
+      /*pageFactory.setMouse('mousePosition', 10);
+      pageFactory.setMouse('mouseUp', true);
+      expect(pageFactory.getMouse()).toEqual({'mousePosition': 10, 'mouseUp': true});*/
 
     });
   });
